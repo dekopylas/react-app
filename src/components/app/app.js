@@ -4,12 +4,15 @@ import Header from '../header';
 import RandomChar from '../randomChar';
 import ItemList from '../itemList';
 import CharDetails from '../charDetails';
+import GotService from '../../service/service';
 
 
 const App = () => {
     return (
+        
         <> 
             <Container>
+            
                 <Header />
             </Container>
             <Container>
