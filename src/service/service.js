@@ -10,14 +10,24 @@ export default class GotService {
     const result = await fetch(`${this._api}${url}`)
     return await result.json()
     }
-    getAllCharacters(){
-        return this.getResourse('/characters?page=5&pageSize=10');
+   async  getAllCharacters(){
+        const res = await this.getResourse('/characters?page=5&pageSize=10');
+        return res.map(this._transformChar());
     }
 
-    getCharacter(id){
-        return this.getResourse(`/characters/${id}`);
+    async getCharacter(id){
+        const character = await this.getResourse(`/characters/${id}`);
+        return this._transformChar(character);
     }
-
+   _transformChar(char){
+       return {
+        name : char.name,
+        gender : char.gender || 'no info',
+        born : char.born || 'no info',
+        died : char.died || 'no info',
+        culture : char.culture || 'no info'
+       }
+    }
 
 
 }
