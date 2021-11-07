@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 export default class GotService {
 
@@ -20,11 +21,4 @@ export default class GotService {
 
 
 }
-const got = new GotService();
 
-got.getAllCharacters()
-    .then(res => res.forEach(element => {
-        console.log(element.name)
-    }));
-got.getCharacter(130)
-    .then(res=>console.log(res));

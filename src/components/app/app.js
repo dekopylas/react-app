@@ -4,6 +4,7 @@ import Header from '../header';
 import RandomChar from '../randomChar';
 import ItemList from '../itemList';
 import CharDetails from '../charDetails';
+// eslint-disable-next-line
 import GotService from '../../service/service';
 
 
