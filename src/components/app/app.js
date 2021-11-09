@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
@@ -8,7 +8,29 @@ import CharDetails from '../charDetails';
 import GotService from '../../service/service';
 
 
-const App = () => {
+class App extends Component {
+    constructor(){
+        super()
+        this.state = {
+            toggle : true,
+            select : 130
+        };
+        this.onToggle = this.onToggle.bind(this);
+        this.changeCharacter = this.changeCharacter.bind(this);
+    }
+    onToggle (){
+        this.setState ({
+            toggle : !this.state.toggle
+        })
+        
+        
+    }
+    changeCharacter = (i)=>{
+        console.log(this.state.select);
+        this.setState({select : 41 + i})
+    }
+    render(){
+        const Wiew = this.state.toggle?<RandomChar/> : null;
     return (
         
         <> 
@@ -19,20 +41,29 @@ const App = () => {
             <Container>
                 <Row>
                     <Col lg={{size: 5, offset: 0}}>
-                        <RandomChar/>
+                        {Wiew}
+                        <button 
+                        onClick = {this.onToggle} 
+                        type="button" 
+                        className="btn btn-outline-primary"
+                        >
+                            Toggle</button>
                     </Col>
                 </Row>
                 <Row>
                     <Col md='6'>
-                        <ItemList />
+                        <ItemList
+                        changeCharacter = {this.changeCharacter} 
+                        />
                     </Col>
                     <Col md='6'>
-                        <CharDetails />
+                        <CharDetails 
+                        charId = {this.state.select}/>
                     </Col>
                 </Row>
             </Container>
         </>
-    );
+    );}
 };
 
 export default App;

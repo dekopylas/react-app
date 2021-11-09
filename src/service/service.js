@@ -12,7 +12,9 @@ export default class GotService {
     }
    async  getAllCharacters(){
         const res = await this.getResourse('/characters?page=5&pageSize=10');
-        return res.map(this._transformChar());
+
+        return res.map(this._transformChar);
+        
     }
 
     async getCharacter(id){
@@ -20,8 +22,9 @@ export default class GotService {
         return this._transformChar(character);
     }
    _transformChar(char){
+
        return {
-        name : char.name,
+        name : char.name || 'no info',
         gender : char.gender || 'no info',
         born : char.born || 'no info',
         died : char.died || 'no info',

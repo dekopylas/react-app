@@ -3,8 +3,8 @@ import './spinner.scss';
 
 const Spinner = () => {
 
-return (<div class="spin-wrapper">
-<div class="spinner">
+return (<div className="spin-wrapper">
+<div className="spinner">
 </div>
 </div>
 )
