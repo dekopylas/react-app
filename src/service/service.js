@@ -10,20 +10,25 @@ export default class GotService {
     const result = await fetch(`${this._api}${url}`)
     return await result.json()
     }
-   async  getAllCharacters(){
+   getAllCharacters = async () => {
         const res = await this.getResourse('/characters?page=5&pageSize=10');
 
         return res.map(this._transformChar);
         
     }
 
-    async getCharacter(id){
+    getCharacter = async(id) => {
         const character = await this.getResourse(`/characters/${id}`);
         return this._transformChar(character);
     }
-   _transformChar(char){
+    _extractId (char){
+        const regId = /\/([0-9]*)$/;
+        return char.url.match(regId)[1];
+    }
+   _transformChar = (char)=>{
 
        return {
+        id : this._extractId(char),
         name : char.name || 'no info',
         gender : char.gender || 'no info',
         born : char.born || 'no info',

@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import ItemList from '../itemList';
-import CharDetails from '../charDetails';
-// eslint-disable-next-line
+import CharacterPage from '../characterPage/characterPage';
 import GotService from '../../service/service';
+import Error from '../error/error';
 
 
 class App extends Component {
@@ -13,11 +12,12 @@ class App extends Component {
         super()
         this.state = {
             toggle : true,
-            select : 130
+            error : false
         };
         this.onToggle = this.onToggle.bind(this);
-        this.changeCharacter = this.changeCharacter.bind(this);
+        
     }
+    GotService = new GotService();
     onToggle (){
         this.setState ({
             toggle : !this.state.toggle
@@ -25,12 +25,13 @@ class App extends Component {
         
         
     }
-    changeCharacter = (i)=>{
-        console.log(this.state.select);
-        this.setState({select : 41 + i})
-    }
+    
+  
     render(){
         const Wiew = this.state.toggle?<RandomChar/> : null;
+        if (this.state.error){
+            return <Error/>
+        }
     return (
         
         <> 
@@ -50,17 +51,7 @@ class App extends Component {
                             Toggle</button>
                     </Col>
                 </Row>
-                <Row>
-                    <Col md='6'>
-                        <ItemList
-                        changeCharacter = {this.changeCharacter} 
-                        />
-                    </Col>
-                    <Col md='6'>
-                        <CharDetails 
-                        charId = {this.state.select}/>
-                    </Col>
-                </Row>
+               <CharacterPage/>
             </Container>
         </>
     );}
