@@ -5,9 +5,9 @@ import CharDetails, {Field} from '../charDetails';
 import GotService from '../../service/service';
 import Error from '../error/error';
 
-export default class CharacterPage extends Component{
+export default class BooksPage extends Component {
     state = {
-        selectItem : 130,
+        selectItem : 3,
         error : false
     }
     GotService = new GotService();
@@ -26,18 +26,17 @@ export default class CharacterPage extends Component{
             <Col md='6'>
                 <ItemList
                 changeCharacter = {this.changeCharacter}
-                itemsLoader = {this.GotService.getAllCharacters}
-                renderItem ={({name, gender})=>`${name} (${gender})`}
+                itemsLoader = {this.GotService.getAllBooks}
+                renderItem ={({name, authors})=>`${name} (${authors})`}
                 />
             </Col>
             <Col md='6'>
                 <CharDetails 
                     charId = {this.state.selectItem}
-                    onItemsLoad = {this.GotService.getCharacter}>
-                    <Field field='gender' label='gender'/>
-                    <Field field='born' label='born'/>
-                    <Field field='died' label='died'/>
-                    <Field field='culture' label='culture'/>
+                    onItemsLoad = {this.GotService.getBook}>
+                    <Field field='authors' label='authors'/>
+                    <Field field='numberOfPages' label='numberOfPages'/>
+                    
                 </CharDetails>
             </Col>
         </Row>

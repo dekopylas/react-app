@@ -31,14 +31,14 @@ componentDidUpdate(prevProps){
     }
 }
 onUpdateChar(){
-    const {charId} = this.props;
-    if (!charId){
+    const onItemsLoad = this.props.onItemsLoad;
+    if (!onItemsLoad){
         return;
     }
     
-
-    this.GotService.getCharacter(charId)
-    .then(items => this.setState({items}));
+    
+onItemsLoad(this.props.charId)
+    .then(items => this.setState({items}));    
 }
 
     

@@ -3,16 +3,17 @@ import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
 import CharacterPage from '../characterPage/characterPage';
+import BooksPage from '../boksPage/boksPage';
 import GotService from '../../service/service';
-import Error from '../error/error';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
 class App extends Component {
     constructor(){
         super()
         this.state = {
-            toggle : true,
-            error : false
+            toggle : true
+            
         };
         this.onToggle = this.onToggle.bind(this);
         
@@ -29,9 +30,6 @@ class App extends Component {
   
     render(){
         const Wiew = this.state.toggle?<RandomChar/> : null;
-        if (this.state.error){
-            return <Error/>
-        }
     return (
         
         <> 
@@ -52,6 +50,7 @@ class App extends Component {
                     </Col>
                 </Row>
                <CharacterPage/>
+               <BooksPage/>
             </Container>
         </>
     );}

@@ -21,6 +21,16 @@ export default class GotService {
         const character = await this.getResourse(`/characters/${id}`);
         return this._transformChar(character);
     }
+    getAllBooks = async() =>{
+        const res = await this.getResourse('/books?page=1&pageSize=10');
+        return res.map(this._transformChar);
+    }
+    getBook = async (id)=>{
+        const book = await this.getResourse(`/books/${id}`);
+        console.log(id);
+        return this._transformChar(book);
+        
+    }
     _extractId (char){
         const regId = /\/([0-9]*)$/;
         return char.url.match(regId)[1];
@@ -33,7 +43,9 @@ export default class GotService {
         gender : char.gender || 'no info',
         born : char.born || 'no info',
         died : char.died || 'no info',
-        culture : char.culture || 'no info'
+        culture : char.culture || 'no info',
+        authors : char.authors || 'no info',
+        numberOfPages : char.numberOfPages || 'no info'
        }
     }
 
