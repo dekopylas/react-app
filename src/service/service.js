@@ -27,9 +27,16 @@ export default class GotService {
     }
     getBook = async (id)=>{
         const book = await this.getResourse(`/books/${id}`);
-        console.log(id);
         return this._transformChar(book);
         
+    }
+    getAllHouses = async ()=>{
+        const res = await this.getResourse('/Houses');
+        return res.map(this._transformChar);
+    }
+    getHouse = async (id) =>{
+        const house = await this.getResourse(`/houses/${id}`);
+        return this._transformChar(house);
     }
     _extractId (char){
         const regId = /\/([0-9]*)$/;
@@ -45,7 +52,10 @@ export default class GotService {
         died : char.died || 'no info',
         culture : char.culture || 'no info',
         authors : char.authors || 'no info',
-        numberOfPages : char.numberOfPages || 'no info'
+        numberOfPages : char.numberOfPages || 'no info',
+        currentLord : char.currentLord || 'no info',
+        words : char.words || 'no info',
+        region : char.region || 'no info'
        }
     }
 

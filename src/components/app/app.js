@@ -6,6 +6,7 @@ import CharacterPage from '../characterPage/characterPage';
 import BooksPage from '../boksPage/boksPage';
 import GotService from '../../service/service';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import HousesPage from '../HousesPage/housesPage';
 
 
 class App extends Component {
@@ -31,8 +32,8 @@ class App extends Component {
     render(){
         const Wiew = this.state.toggle?<RandomChar/> : null;
     return (
-        
-        <> 
+        <Router>
+            <div className="app"> 
             <Container>
             
                 <Header />
@@ -49,11 +50,17 @@ class App extends Component {
                             Toggle</button>
                     </Col>
                 </Row>
-               <CharacterPage/>
-               <BooksPage/>
+                <Route path= '/Characters' component = {CharacterPage}/>
+                <Route path= '/Houses' component = {HousesPage}/>
+                <Route path= '/Books' component = {BooksPage}/>
+              
             </Container>
-        </>
-    );}
+        </div>
+            
+            
+            </Router>
+        
+    )}
 };
 
 export default App;

@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 const HeaderBlock = styled.div`
     display: flex;
@@ -31,21 +32,21 @@ const Header = () => {
     return (
         <HeaderBlock>
             <HeaderTitle>
-                <a href="#">
+                <Link to='/'>
                 Game of Thrones DB
-                </a>
+                </Link>
             </HeaderTitle>
             <HeaderLinks>
                 <li>
                
-                    <a href="#">Characters</a>
+                    <Link to='/Characters'>Characters</Link>
                 </li>
                 <li>
-                    <a href="#">Houses</a>
+                    <Link to='/Houses'>Houses</Link>
                 </li>
                 <li>
                     
-                 <a href="#">Books</a>   
+                 <Link to='/Books'>Books</Link>   
                 </li>
             </HeaderLinks>
         </HeaderBlock>
